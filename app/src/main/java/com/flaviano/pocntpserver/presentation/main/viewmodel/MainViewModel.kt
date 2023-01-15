@@ -5,17 +5,13 @@ import com.flaviano.pocntpserver.domain.usecase.GetTrueTimeNowUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import java.time.Instant
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 
-class MainViewModel : ViewModel(), KoinComponent, MainUIAction {
-
-    private val getTrueTimeNowUseCase: GetTrueTimeNowUseCase by inject()
+class MainViewModel(val getTrueTimeNowUseCase: GetTrueTimeNowUseCase) : ViewModel(), MainUIAction {
 
     private val _uiState = MutableStateFlow(MainUiState())
     val uiState = _uiState.asStateFlow()
@@ -28,7 +24,7 @@ class MainViewModel : ViewModel(), KoinComponent, MainUIAction {
             ).format(DateTimeFormatter.ofPattern(FORMAT_DATE_PATTERN))
             _uiState.update { it.copy(date = dateFormat) }
         }.onFailure {
-
+            // write here feedback when trueTime is not initialized
         }
     }
 

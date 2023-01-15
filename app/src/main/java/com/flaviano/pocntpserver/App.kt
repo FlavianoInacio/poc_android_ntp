@@ -4,10 +4,12 @@ import android.app.Application
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.flaviano.pocntpserver.domain.usecase.GetTrueTimeNowUseCase
+import com.flaviano.pocntpserver.presentation.main.viewmodel.MainViewModel
 import com.instacart.library.truetime.TrueTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -35,7 +37,10 @@ class App : Application() {
             // declare used Android context
             androidContext(this@App)
             // declare modules
-            modules(modules = module { singleOf(::GetTrueTimeNowUseCase) })
+            modules(modules = module {
+                singleOf(::GetTrueTimeNowUseCase)
+                viewModel { MainViewModel(get()) }
+            })
         }
         // execute async
         ProcessLifecycleOwner.get().lifecycleScope.launch(Dispatchers.Default) {
