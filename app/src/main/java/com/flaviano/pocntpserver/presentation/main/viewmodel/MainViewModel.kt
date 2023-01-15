@@ -5,10 +5,6 @@ import com.flaviano.pocntpserver.domain.usecase.GetTrueTimeNowUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import java.time.Instant
-import java.time.ZoneId
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 
 
 class MainViewModel(val getTrueTimeNowUseCase: GetTrueTimeNowUseCase) : ViewModel(), MainUIAction {
@@ -18,11 +14,12 @@ class MainViewModel(val getTrueTimeNowUseCase: GetTrueTimeNowUseCase) : ViewMode
 
     override fun getDateUpdated() {
         getTrueTimeNowUseCase().onSuccess { date ->
+            /** Uncomment for result in Pt/BR
             val dateFormat = ZonedDateTime.ofInstant(
-                Instant.ofEpochMilli(date.time),
-                ZoneId.of(ZONE_ID)
-            ).format(DateTimeFormatter.ofPattern(FORMAT_DATE_PATTERN))
-            _uiState.update { it.copy(date = dateFormat) }
+            Instant.ofEpochMilli(date.time),
+            ZoneId.of(ZONE_ID)
+            ).format(DateTimeFormatter.ofPattern(FORMAT_DATE_PATTERN)) **/
+            _uiState.update { it.copy(date = date.toString()) }
         }.onFailure {
             // write here feedback when trueTime is not initialized
         }
