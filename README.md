@@ -9,3 +9,7 @@ From the necessity of get the date time updated ever for motive of authenticatio
 - TrueTime for querest of date time updated. (https://github.com/instacart/truetime-android)
 - Jetpack compose for build the UI
 
+# Video of application
+
+
+[poc NTP.webm](https://user-images.githubusercontent.com/6264943/212568066-addd0c40-1cab-4060-8696-e687445e1478.webm)
