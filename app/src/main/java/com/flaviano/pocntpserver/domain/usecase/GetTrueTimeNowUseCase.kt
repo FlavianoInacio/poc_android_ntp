@@ -1,6 +1,6 @@
 package com.flaviano.pocntpserver.domain.usecase
 
-import com.instacart.library.truetime.TrueTime
+import com.flaviano.pocntpserver.data.sntp.SNTPManager
 import java.util.*
 
 class GetTrueTimeNowUseCase {
@@ -11,7 +11,7 @@ class GetTrueTimeNowUseCase {
      * @return Result<Date>
      */
     operator fun invoke(): Result<Date> = kotlin.runCatching {
-        TrueTime.now()
+        SNTPManager.now()
     }
 
 }

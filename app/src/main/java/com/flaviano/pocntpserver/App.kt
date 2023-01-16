@@ -3,9 +3,9 @@ package com.flaviano.pocntpserver
 import android.app.Application
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import com.flaviano.pocntpserver.data.sntp.SNTPManager
 import com.flaviano.pocntpserver.domain.usecase.GetTrueTimeNowUseCase
 import com.flaviano.pocntpserver.presentation.main.viewmodel.MainViewModel
-import com.instacart.library.truetime.TrueTime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
@@ -45,9 +45,9 @@ class App : Application() {
         // execute async
         ProcessLifecycleOwner.get().lifecycleScope.launch(Dispatchers.Default) {
             var position = 0
-            while (!TrueTime.isInitialized()) {
+            while (!SNTPManager.isInitialized()) {
                 try {
-                    TrueTime.build()
+                    SNTPManager.build()
                         .withNtpHost(NTP_BR_HOSTS[position])
                         .withConnectionTimeout(3000)
                         .initialize()
