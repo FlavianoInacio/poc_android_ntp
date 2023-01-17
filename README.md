@@ -6,7 +6,7 @@ From the necessity of get the date time updated ever for motive of authenticatio
 # Libs
 
 - Koin for dependencies inject (https://insert-koin.io/)
-- TrueTime for querest of date time updated. (https://github.com/instacart/truetime-android)
+- SNTPCClient for querest of date time updated. ([link](https://developer.android.com/reference/androidx/media3/exoplayer/util/SntpClient))
 - Jetpack compose for build the UI
 
 # Video of application
