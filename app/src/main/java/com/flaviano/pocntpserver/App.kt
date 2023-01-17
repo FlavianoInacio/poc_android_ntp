@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.flaviano.pocntpserver.data.sntp.SNTPManager
-import com.flaviano.pocntpserver.domain.usecase.GetTrueTimeNowUseCase
+import com.flaviano.pocntpserver.domain.usecase.GetDateTimeUpdatedUseCase
 import com.flaviano.pocntpserver.presentation.main.viewmodel.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,7 +38,7 @@ class App : Application() {
             androidContext(this@App)
             // declare modules
             modules(modules = module {
-                singleOf(::GetTrueTimeNowUseCase)
+                singleOf(::GetDateTimeUpdatedUseCase)
                 viewModel { MainViewModel(get()) }
             })
         }

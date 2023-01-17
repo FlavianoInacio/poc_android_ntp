@@ -9,12 +9,12 @@ import java.util.Date
 class SNTPManager {
 
     @Throws(IOException::class)
-    fun initialize() {
+    suspend fun initialize() {
         initialize(NTP_HOST)
     }
 
     @Throws(IOException::class)
-    private fun initialize(ntpHost: String) {
+    private suspend fun initialize(ntpHost: String) {
         if (isInitialized()) {
             Log.d(TAG, "---- SNTP_Manager already initialized from previous boot/init")
             return
@@ -23,7 +23,7 @@ class SNTPManager {
     }
 
     @Throws(IOException::class)
-    fun requestTime(ntpHost: String): LongArray {
+     fun requestTime(ntpHost: String): LongArray {
         return SNTP_CLIENT.requestTime(
             ntpHost,
             ROOT_DELAY_MAX,

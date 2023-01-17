@@ -3,7 +3,7 @@ package com.flaviano.pocntpserver.domain.usecase
 import com.flaviano.pocntpserver.data.sntp.SNTPManager
 import java.util.*
 
-class GetTrueTimeNowUseCase {
+class GetDateTimeUpdatedUseCase {
 
     /**
      * Must be returned ever the date time updated if TrueTime is initialized

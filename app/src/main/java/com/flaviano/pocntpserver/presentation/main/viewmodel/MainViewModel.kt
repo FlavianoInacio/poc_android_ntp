@@ -1,19 +1,19 @@
 package com.flaviano.pocntpserver.presentation.main.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.flaviano.pocntpserver.domain.usecase.GetTrueTimeNowUseCase
+import com.flaviano.pocntpserver.domain.usecase.GetDateTimeUpdatedUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 
-class MainViewModel(val getTrueTimeNowUseCase: GetTrueTimeNowUseCase) : ViewModel(), MainUIAction {
+class MainViewModel(val getDateTimeUpdatedUseCase: GetDateTimeUpdatedUseCase) : ViewModel(), MainUIAction {
 
     private val _uiState = MutableStateFlow(MainUiState())
     val uiState = _uiState.asStateFlow()
 
     override fun getDateUpdated() {
-        getTrueTimeNowUseCase().onSuccess { date ->
+        getDateTimeUpdatedUseCase().onSuccess { date ->
             /** Uncomment for result in Pt/BR
             val dateFormat = ZonedDateTime.ofInstant(
             Instant.ofEpochMilli(date.time),

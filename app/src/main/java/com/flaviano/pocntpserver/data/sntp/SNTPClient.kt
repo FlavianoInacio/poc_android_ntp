@@ -143,7 +143,7 @@ class SNTPClient {
         }
     }
 
-    fun cacheTrueTimeInfo(response: LongArray) {
+    private fun cacheTrueTimeInfo(response: LongArray) {
         _cachedSntpTime.set(sntpTime(response))
         _cachedDeviceUptime.set(response[RESPONSE_INDEX_RESPONSE_TICKS])
     }
